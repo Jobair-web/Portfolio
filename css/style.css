@@ -1517,3 +1517,224 @@ body {
     display: none;
   }
 }
+
+/* ---------- Motion layer: Framer-Motion-style animations (pure CSS) ---------- */
+:root {
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+@keyframes dropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+header {
+  animation: dropIn 0.7s var(--ease) backwards;
+}
+.hg > div:first-child > * {
+  animation: rise 0.8s var(--ease) backwards;
+}
+.hg > div:first-child > :nth-child(1) {
+  animation-delay: 0.05s;
+}
+.hg > div:first-child > :nth-child(2) {
+  animation-delay: 0.15s;
+}
+.hg > div:first-child > :nth-child(3) {
+  animation-delay: 0.25s;
+}
+.hg > div:first-child > :nth-child(4) {
+  animation-delay: 0.35s;
+}
+.hg > div:first-child > :nth-child(5) {
+  animation-delay: 0.45s;
+}
+.hg > div:first-child > :nth-child(6) {
+  animation-delay: 0.55s;
+}
+.fr img {
+  animation: floaty 7s ease-in-out 1.4s infinite;
+}
+.soc {
+  animation: rise 0.8s var(--ease) 0.75s backwards;
+}
+#dc > * {
+  animation: rise 0.6s var(--ease) backwards;
+}
+#dc > :nth-child(1) {
+  animation-delay: 0s;
+}
+#dc > :nth-child(2) {
+  animation-delay: 0.04s;
+}
+#dc > :nth-child(3) {
+  animation-delay: 0.08s;
+}
+#dc > :nth-child(4) {
+  animation-delay: 0.12s;
+}
+#dc > :nth-child(5) {
+  animation-delay: 0.16s;
+}
+#dc > :nth-child(6) {
+  animation-delay: 0.2s;
+}
+#dc > :nth-child(7) {
+  animation-delay: 0.24s;
+}
+#dc > :nth-child(8) {
+  animation-delay: 0.28s;
+}
+/* whileHover / whileTap */
+.btn {
+  transition:
+    transform 0.35s var(--spring),
+    border-color 0.2s,
+    box-shadow 0.25s,
+    background 0.2s,
+    color 0.2s,
+    opacity 0.2s;
+}
+.btn:hover {
+  transform: translateY(-2px) scale(1.04);
+}
+.btn:active {
+  transform: scale(0.95);
+  transition-duration: 0.1s;
+}
+.card:not(.rv),
+.cb:not(.rv) {
+  transition:
+    transform 0.45s var(--spring),
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+.cb:hover {
+  transform: translateY(-4px);
+}
+.badge,
+.chip {
+  transition:
+    transform 0.3s var(--spring),
+    border-color 0.2s;
+}
+.badge:hover,
+.chip:hover {
+  transform: translateY(-2px) scale(1.06);
+}
+.so-i:active {
+  transform: scale(0.92);
+}
+.th img {
+  transition: transform 0.9s var(--ease);
+}
+.pc:hover .th img {
+  transform: scale(1.07);
+}
+nav.d a {
+  position: relative;
+}
+nav.d a::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 5px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--g);
+  transform: scaleX(0);
+  transition: transform 0.35s var(--ease);
+}
+nav.d a:hover::after,
+nav.d a.on::after {
+  transform: scaleX(1);
+}
+/* scroll reveal variants: education cards slide in from alternating sides, why-hire cards spring up */
+.ec.rv {
+  transform: translateX(-40px);
+}
+.ec.rv:nth-child(even) {
+  transform: translateX(40px);
+}
+.ec.rv.in:nth-child(n) {
+  transform: none;
+}
+.wc.rv {
+  transform: translateY(40px) scale(0.94);
+}
+.wc.rv.in {
+  transform: none;
+}
+.ec-k .chip:nth-child(1) {
+  --ci: 1;
+}
+.ec-k .chip:nth-child(2) {
+  --ci: 2;
+}
+.ec-k .chip:nth-child(3) {
+  --ci: 3;
+}
+.ec-k .chip:nth-child(4) {
+  --ci: 4;
+}
+.ec-k .chip:nth-child(5) {
+  --ci: 5;
+}
+.ec-k .chip:nth-child(6) {
+  --ci: 6;
+}
+.ec-k .chip:nth-child(7) {
+  --ci: 7;
+}
+.ec-k .chip:nth-child(8) {
+  --ci: 8;
+}
+.ec-k .chip:nth-child(9) {
+  --ci: 9;
+}
+.ec-k .chip:nth-child(10) {
+  --ci: 10;
+}
+.ec-k .chip:nth-child(11) {
+  --ci: 11;
+}
+.ec-k .chip:nth-child(12) {
+  --ci: 12;
+}
+.ec.rv.in .chip {
+  animation: popIn 0.55s var(--spring) backwards;
+  animation-delay: calc(var(--ci, 0) * 55ms + 0.35s);
+}
+/* four projects: 2x2 grid on wide screens */
+@media (min-width: 1100px) {
+  .pg {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+html,
+body {
+  overflow-x: clip;
+}
